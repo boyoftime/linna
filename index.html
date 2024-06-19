@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Message for Linna</title>
+    <style>
+        body {
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+            font-family: 'Arial', sans-serif;
+            color: #fff;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            overflow: auto;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 600px;
+            animation: fadeIn 2s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+        }
+        p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+        .puzzle, .form-section {
+            display: none;
+        }
+        .puzzle input {
+            width: 100px;
+            padding: 5px;
+            font-size: 1em;
+            border-radius: 5px;
+            border: none;
+        }
+        .form-section input, .form-section textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 1em;
+            border-radius: 5px;
+            border: none;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        }
+        .form-section button {
+            padding: 10px 20px;
+            background: #ff6f61;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background 0.3s;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        .form-section button:hover {
+            background: #ff4a3d;
+        }
+        .image-container {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .image-container img {
+            width: 50%;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+        .emoji {
+            position: absolute;
+            font-size: 3em;
+            animation: float 3s infinite ease-in-out;
+        }
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+        .emoji1 { top: 10%; left: 10%; }
+        .emoji2 { top: 20%; right: 15%; }
+        .emoji3 { bottom: 20%; left: 20%; }
+        .emoji4 { bottom: 10%; right: 10%; }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+            p {
+                font-size: 1em;
+            }
+            .form-section button {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>To My Beautiful Linna</h1>
+        <p>Someless loves you so much. Your presence in my life brings endless joy and happiness. You are my sunshine and my world. With you, every moment is a treasure, and every day is a blessing.</p>
+        <div class="image-container">
+            <img src="linna.jpg" alt="Linna">
+            <div class="emoji emoji1">❤️</div>
+            <div class="emoji emoji2">😍</div>
+            <div class="emoji emoji3">💖</div>
+            <div class="emoji emoji4">🥰</div>
+        </div>
+        <p>Click the button below to solve a simple puzzle and continue:</p>
+        <button onclick="startPuzzle()">Start Puzzle</button>
+
+        <div class="puzzle">
+            <p>Enter the answer to proceed: What is 3 + 4?</p>
+            <input type="text" id="puzzle-answer">
+            <button onclick="checkPuzzle()">Submit</button>
+        </div>
+
+        <div class="form-section">
+            <h2>Why Do You Love Me?</h2>
+            <form id="love-form">
+                <textarea name="question1" placeholder="1. Why do you love me?" required></textarea>
+                <textarea name="question2" placeholder="2. What is your favorite memory with me?" required></textarea>
+                <textarea name="question3" placeholder="3. How do I make you feel special?" required></textarea>
+                <textarea name="question4" placeholder="4. What are your dreams for our future?" required></textarea>
+                <textarea name="question5" placeholder="5. How do you describe our relationship?" required></textarea>
+                <textarea name="question6" placeholder="6. What is your favorite thing about me?" required></textarea>
+                <textarea name="question7" placeholder="7. What have I taught you about love?" required></textarea>
+                <textarea name="question8" placeholder="8. What makes us a great couple?" required></textarea>
+                <textarea name="question9" placeholder="9. How do you plan to support me in the future?" required></textarea>
+                <textarea name="question10" placeholder="10. What is one thing you want to promise me?" required></textarea>
+                <button type="submit">Send</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function startPuzzle() {
+            document.querySelector('.puzzle').style.display = 'block';
+        }
+
+        function checkPuzzle() {
+            const answer = document.getElementById('puzzle-answer').value;
+            if (answer == '7') {
+                document.querySelector('.puzzle').style.display = 'none';
+                document.querySelector('.form-section').style.display = 'block';
+            } else {
+                alert('Incorrect answer. Please try again.');
+            }
+        }
+
+        document.getElementById('love-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const data = {};
+            formData.forEach((value, key) => (data[key] = value));
+
+            fetch('https://formspree.io/f/maylkldy', {  // Formspree URL for demo purposes
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Your responses have been submitted. The site will now close.');
+                    window.close();
+                } else {
+                    alert('There was an error submitting your responses. Please try again.');
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>
